@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .password-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper button {
+            margin-left: 5px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>1. Press Any Key (ASCII + Modifiers)</h2>
+    <input type="text" placeholder="Press keys here" onkeydown="checkKey(event)" />
+
+    <h2>2. Number-Only Input</h2>
+    <input type="text" onkeypress="allowNumbersOnly(event)" placeholder="Enter numbers only" />
+
+    <h2>3. Password with Toggle Eye</h2>
+    <div class="password-wrapper">
+        <input type="password" id="mypassword" placeholder="Enter password" />
+        <button onclick="togglePassword()" id="toggleBtn">👁️</button>
+    </div>
+
+    <script>
+        // 1. ASCII + Modifier keys
+        function checkKey(e) {
+            alert("ASCII Code: " + e.keyCode);
+
+            if (e.altKey) alert("You pressed the Alt key");
+            if (e.ctrlKey) alert("You pressed the Ctrl key");
+            if (e.shiftKey) alert("You pressed the Shift key");
+        }
+
+        // 2. Allow only number keys
+        function allowNumbersOnly(e) {
+            const char = e.key;
+            if (!/[0-9]/.test(char)) {
+                e.preventDefault();
+            }
+        }
+
+        // 3. Toggle password visibility
+        function togglePassword() {
+            const input = document.getElementById("mypassword");
+            const btn = document.getElementById("toggleBtn");
+
+            if (input.type === "password") {
+                input.type = "text";
+                btn.textContent = "🙈";
+            } else {
+                input.type = "password";
+                btn.textContent = "👁️";
+            }
+        }
+    </script>
+
+</body>
+</html>

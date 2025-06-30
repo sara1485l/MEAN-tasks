@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="myDiv" style="width: 100px; height: 100px; background-color: lightblue; cursor: pointer;justify-content: center;">
+   <h3> Click me</h3>
+</div>
+
+<script>
+    const originalDiv = document.getElementById('myDiv');
+
+    originalDiv.addEventListener('click', function () {
+        const clone = originalDiv.cloneNode(true);
+
+        const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        clone.style.backgroundColor = randomColor;
+
+        clone.style.marginTop = '10px';
+
+        document.body.appendChild(clone);
+    });
+</script>
+
+</body>
+</html>
