@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch Limited Cards</title>
+  <style>
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #333;
+    }
+    .card p {
+      font-size: 16px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div id="card"></div>
+
+  <script>
+    const numberToShow = 10;
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => {
+        const limited = data.slice(0, numberToShow);
+        limited.forEach(post => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <h2>ID: ${post.id}</h2>
+            <h3>${post.title}</h3>
+            <p>${post.body}</p>`;
+          document.getElementById('card').appendChild(card);
+        });
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
