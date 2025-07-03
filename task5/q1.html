@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Info Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User Information Form</h2>
+
+  <form id="userForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" />
+
+    <button type="submit">Add</button>
+    <button type="reset">Reset</button>
+
+    <div id="message" class="error"></div>
+    <div id="success" class="success"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('userForm');
+    const messageDiv = document.getElementById('message');
+    const successDiv = document.getElementById('success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form from submitting
+
+      // Clear previous messages
+      messageDiv.textContent = '';
+      successDiv.textContent = '';
+
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      // Validation
+      if (name === '' || age === '' || email === '') {
+        messageDiv.textContent = 'All fields are required!';
+        return;
+      }
+
+      if (isNaN(age) || age < 1 || age > 120) {
+        messageDiv.textContent = 'Please enter a valid age between 1 and 120.';
+        return;
+      }
+
+      const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      if (!emailPattern.test(email)) {
+        messageDiv.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      successDiv.textContent = `User ${name} added successfully!`;
+    });
+
+    form.addEventListener('reset', function () {
+      messageDiv.textContent = '';
+      successDiv.textContent = '';
+    });
+  </script>
+
+</body>
+</html>

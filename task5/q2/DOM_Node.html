@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+
+        #nav {
+            list-style: circle;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        #nav li {
+            margin: 5px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div id="navigation">
+            <ul id="nav">
+                <li><strong>Memo</strong></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Clients</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="dom.js"></script>
+</body>
+</html>
